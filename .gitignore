@@ -1,0 +1,7 @@
+# 環境設定
+.vscode
+Pipfile
+Pipfile.lock
+
+# 檔案文件
+movies_datas
