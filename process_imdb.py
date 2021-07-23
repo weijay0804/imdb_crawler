@@ -122,13 +122,3 @@ def get_ch_movie_type(movie_datas : List[Dict[str, str]]) -> List[Dict[str, str]
 
     return result
 
-
-
-datas = open_file('hot_movies.json')
-
-ch_movies = get_ch_movie_type(datas)
-
-save_file('test.txt', ch_movies)
-
-
-
