@@ -2,6 +2,9 @@
 .vscode
 Pipfile
 Pipfile.lock
+.env
 
 # 檔案文件
 movies_datas
+
+main.py

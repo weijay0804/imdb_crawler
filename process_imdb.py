@@ -69,14 +69,14 @@ def from_tmdb_get_movies(imdb_id : str, api_key : str) -> json:
 
     return datas
 
-def get_ch_movie_description(movie_datas : List[Dict[str, str]], sleep_time : float = 0.5) -> List[Dict[str, str]]:
+def get_ch_movie_description(movie_datas : List[Dict[str, str]], api_key : str,  sleep_time : float = 0.5) -> List[Dict[str, str]]:
     '''用 Tmdb Api 取得中文的電影描述，並更新到原本的電影資料'''
     
     result = []
 
     for movie in movie_datas:
         imdb_id = movie['movie_id']
-        ch_movie_datas = from_tmdb_get_movies(imdb_id)
+        ch_movie_datas = from_tmdb_get_movies(imdb_id, api_key)
 
         if movie['movie_description'] is None or ch_movie_datas['movie_results'][0]['overview'] == '':
             movie['movie_description'] = None
@@ -89,6 +89,8 @@ def get_ch_movie_description(movie_datas : List[Dict[str, str]], sleep_time : fl
         print('-------------------\n')
 
         time.sleep(sleep_time)
+
+        return result
 
 def get_ch_movie_type(movie_datas : List[Dict[str, str]]) -> List[Dict[str, str]]:
     '''把電影類別的資料從英文改成中文'''
