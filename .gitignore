@@ -1,4 +1,5 @@
 # 環境設定
+__pycache__
 .vscode
 Pipfile
 Pipfile.lock
@@ -7,4 +8,3 @@ Pipfile.lock
 # 檔案文件
 movies_datas
 
-main.py

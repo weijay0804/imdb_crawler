@@ -7,8 +7,6 @@
 
 from bs4 import BeautifulSoup
 from typing import List, Dict
-from time import time
-import json
 import datetime
 import requests
 
@@ -39,7 +37,7 @@ def get_movies_rank_datas(url : str, limlit : int = None) -> List[Dict[str , str
         content_post = content.find_previous_sibling('td', class_ = 'posterColumn')
 
         meta_dict = {
-            'movie_id' : content.find('a').get('href').split('/')[2],
+            'movie_id' : content_post.find('a').get('href').split('/')[2],
             'title' : content.find('a').string
         }
 

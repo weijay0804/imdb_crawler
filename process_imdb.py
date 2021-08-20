@@ -9,50 +9,6 @@ from typing import Dict, List
 import json
 import requests
 import time
-import os
-
-
-
-def open_file(file_name : str):
-    '''打開 json 格式的檔案'''
-
-    try:
-        if not os.path.exists(file_name):
-            raise Exception('檔案不存在，或檔案名稱錯誤')
-
-        if not file_name.endswith('.json'):
-            raise Exception('檔案格式錯誤，必須為 .json')
-
-        with open(file_name, encoding='utf-8') as f:
-            datas = json.load(f)
-
-    except Exception as e:
-        print(f'錯誤! {e}')
-        return None
-
-    return datas
-
-
-def save_file(file_name : str, datas : Dict) -> json:
-    '''儲存檔案，格式為 json'''
-
-    try:
-        if os.path.exists(file_name):
-            raise Exception('檔案名稱已存在')
-
-        if not file_name.endswith('.json'):
-            raise Exception('檔案格式錯誤，必須為 .json')
-
-        with open(file_name, 'w', encoding='utf-8') as f:
-            datas = json.dumps(datas, indent=5)
-            f.write(datas)
-
-    except Exception as e:
-        print(f'錯誤! {e}')
-        return ''
-    
-    print('Done !')
-    return None
 
 
 def from_tmdb_get_movies(imdb_id : str, api_key : str) -> json:
@@ -90,7 +46,7 @@ def get_ch_movie_description(movie_datas : List[Dict[str, str]], api_key : str, 
 
         time.sleep(sleep_time)
 
-        return result
+    return result
 
 def get_ch_movie_type(movie_datas : List[Dict[str, str]]) -> List[Dict[str, str]]:
     '''把電影類別的資料從英文改成中文'''
@@ -101,7 +57,8 @@ def get_ch_movie_type(movie_datas : List[Dict[str, str]]) -> List[Dict[str, str]
     'Film-Noir': '黑色電影', 'Sci-Fi': '科幻', 'Adventure': '冒險', 
     'Fantasy': '科幻', 'Mystery': '神秘', 'Sport': '運動', 'Romance': '浪漫', 
     'Family': '家庭', 'Music': '音樂', 'Crime': '犯罪', 'Action': '動作', 
-    'Horror': '恐怖', 'Musical': '舞臺劇', 'Comedy': '喜劇', 'Animation': '動畫'
+    'Horror': '恐怖', 'Musical': '舞臺劇', 'Comedy': '喜劇', 'Animation': '動畫',
+    'Documentary' : '紀錄'
     }
 
     result = [] # 儲存結果
